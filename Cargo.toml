@@ -1,0 +1,6 @@
+[package]
+name = "rust-chip8"
+version = "0.1.0"
+authors = ["Alex Grimes"]
+
+[dependencies]
