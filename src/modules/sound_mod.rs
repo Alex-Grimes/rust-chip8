@@ -1,11 +1,11 @@
 use sdl2;
-use sdl2::audio::{AudioCallback, AudioDesired, AudioDevice};
+use sdl2::audio::{AudioCallback, AudioDevice, AudioSpecDesired};
 
-pub struct SoundModoule {
+pub struct SoundModule {
     device: AudioDevice<SquareWave>,
 }
 
-impl SoundModoule {
+impl SoundModule {
     pub fn new(sdl_context: &sdl2::Sdl) -> Self {
         let sound_subsystem = sdl_context.audio().unwrap();
 
@@ -27,7 +27,7 @@ impl SoundModoule {
             })
             .unwrap();
 
-        SoundModoule { device: device }
+        SoundModule { device: device }
     }
 
     pub fn start_beep(&self) {
@@ -44,7 +44,7 @@ struct SquareWave {
     volume: f32,
 }
 
-impl SoundCallback for SquareWave {
+impl AudioCallback for SquareWave {
     type Channel = f32;
 
     fn callback(&mut self, out: &mut [f32]) {

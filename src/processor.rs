@@ -105,10 +105,14 @@ impl Processor {
         }
 
         OutputState {
-            vram: (),
-            vram_changed: (),
-            beep: (),
+            vram: &self.vram,
+            vram_changed: self.vram_changed,
+            beep: self.sound_timer > 0,
         }
+    }
+
+    fn get_opcode(&self) -> u16 {
+        (self.ram[self.pc] as u16) << 8 | self.ram[self.pc + 1] as u16
     }
 
     fn run_opcode(&mut self, opcode: u16) {

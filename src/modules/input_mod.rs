@@ -8,8 +8,8 @@ pub struct InputModule {
 
 impl InputModule {
     pub fn new(sdl2_context: &sdl2::Sdl) -> Self {
-        InputDriver {
-            events: sdl_context.event_pump().unwrap(),
+        InputModule {
+            events: sdl2_context.event_pump().unwrap(),
         }
     }
 
